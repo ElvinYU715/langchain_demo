@@ -5,6 +5,7 @@ import os
 from langchain_openai import ChatOpenAI
 from langchain.chat_models import init_chat_model
 from langchain_core.rate_limiters import InMemoryRateLimiter
+from utils import DASHSCOPE_API_KEY, BASE_URL
 
 
 def main():
@@ -17,8 +18,8 @@ def main():
 
     # llm = ChatOpenAI(model="deepseek-r1",
     #                  temperature=1.3,
-    #                  api_key=os.getenv("DASHSCOPE_API_KEY"),
-    #                  base_url=os.getenv("BASE_URL"))
+    #                  api_key=DASHSCOPE_API_KEY),
+    #                  base_url=BASE_URL)
     
 
     # v1.0以后出现的写法
@@ -26,8 +27,8 @@ def main():
         model="deepseek-r1",
         model_provider="openai",
         temperature=1.3,
-        api_key=os.getenv("DASHSCOPE_API_KEY"),
-        base_url=os.getenv("BASE_URL"),
+        api_key=DASHSCOPE_API_KEY,
+        base_url=BASE_URL,
         rate_limiter=rate_limiter)
 
     for chunk in llm.stream("请简单介绍一下深度学习，在三句话以内"):
